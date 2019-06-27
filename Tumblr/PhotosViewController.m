@@ -47,8 +47,9 @@
             
             NSLog(@"%@", dataDictionary);
             
-            [self.tableView reloadData];
         }
+        [self.tableView reloadData];
+        
     }];
     [task resume];
 }
@@ -65,6 +66,7 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostTableViewCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"PostTableViewCell"];
+    myCell.imageViewPost.image = nil;
     
     NSDictionary *post = self.posts[indexPath.row];
     NSArray *photos = post[@"photos"];
@@ -82,7 +84,7 @@
         //Create a URL using the urlString
         NSURL *url = [NSURL URLWithString:urlString];
         
-        myCell.imageViewPost.image = nil;
+        
         NSLog(@"%@", url);
         [myCell.imageViewPost setImageWithURL:url];
     }
